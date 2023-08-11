@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des commandes{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4">Gestion des commandes</h1>
+
+<table class="container table table-dark table-striped">
+    <thead>
+    <tr>
+    <th scope="col">Commande</th>
+    <th scope="col">Membre</th>
+    <th scope="col">Vehicule</th>
+    <th scope="col">Date et heure de départ</th>
+    <th scope="col">Date et heure de fin</th>
+    <th scope="col">Prix Total</th>
+    <th scope="col">Date d'enregistrement</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+    <th scope="col">Commande</th>
+    <th scope="col">Membre</th>
+    <th scope="col">Vehicule</th>
+    <th scope="col">Date et heure de départ</th>
+    <th scope="col">Date et heure de fin</th>
+    <th scope="col">Prix Total</th>
+    <th scope="col">Date d'enregistrement</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    {% for commande in commandes %}
+        
+    <tr>
+    <td>{{ commande.id }}</td>
+    <td>{{ commande.user.id }}</td>
+    <td>{{ commande.vehicule.id }}</td>
+    <td>{{ commande.dateHeureDepart }}</td>
+    <td>{{ commande.dateHeurefin }}</td> 
+    <td>{{ commande.dateEnregistrement }}</td>
+    <td>{{ commande.prixJournalier }} €</td>
+    <td>
+        <a href="" class="test-success me-2"><i class="bi bi-eye-fill"></i></a>    
+        <a href="" class="text-info me-2"><i class="bi bi-pencil-square"></i></a>    
+        <a href="" class="text-danger"><i class="bi bi-trash3-fill"></i></a>    
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

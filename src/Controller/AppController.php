@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Form\CommandeType;
 use App\Repository\VehiculeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AppController extends AbstractController
 {
@@ -27,11 +31,29 @@ class AppController extends AbstractController
     }
 
     #[Route('/vehicule/{id}', name: 'show_vehicule')]
-    public function show($id, VehiculeRepository $repo)
+    public function show($id, VehiculeRepository $repo, Request $rq, EntityManagerInterface $manager)
     {
         $vehicule = $repo->find($id);
+
+        $commande = new Commande;
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($rq);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $commande
+                     
+                     ->setVehicule($vehicule);
+
+            $manager->persist($commande);
+            $manager->flush();
+            $this->addFlash('success', "Votre commande a bien été pris en compte");
+            return $this->redirectToRoute('show_vehicule', ['id' => $id]);
+        }
+
         return $this->render('app/show.html.twig', [
             'vehicule' => $vehicule,
+            'commande' => $form,
         ]);
     }
 

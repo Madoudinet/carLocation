@@ -19,6 +19,19 @@
 		</div>
 	</div>
 
+<div class="container">
+<h2 class="text-center">Reservation</h2>
+	{{ form_start(commande) }}
+	<div class="row">
+	<div class="col-6">{{ form_row(commande.date_heure_depart) }}</div>
+	<div class="col-6">{{ form_row(commande.date_heure_fin) }}</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Envoyer</button>
+
+
+	{{ form_end(commande) }}
+</div>
+
 
 
 {% endblock %}

@@ -4,9 +4,10 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Vehicule;
-use App\Form\RegistrationFormType;
 use App\Form\VehiculeType;
+use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\VehiculeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -117,5 +118,14 @@ class AdminController extends AbstractController
     //         'editMode' => $user->getId() !== null,
     //     ]);
     // }
+    #[Route('/commandes/gestion', name: 'app_gestion_commandes')]
+    public function gestionCommande(CommandeRepository $repo): Response
+    {
+        $commande = $repo->findAll();
+        return $this->render('admin/vehicules/gestionCommandes.html.twig', [
+            'commandes' => $commande,
+        ]);
+    }
+
 }
 
