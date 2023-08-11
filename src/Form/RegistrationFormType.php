@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -25,8 +24,8 @@ class RegistrationFormType extends AbstractType
             ->add('prenom')
             ->add('civilite', ChoiceType::class, [
                 'choices' => [
-                    'Homme' => 'homme',
-                    'Femme' => 'femme',
+                    'Homme' => 'Homme',
+                    'Femme' => 'Femme',
                 ]
             ])
             // ->add('roles', ChoiceType::class, [
@@ -37,16 +36,8 @@ class RegistrationFormType extends AbstractType
             
             // ])
             ->add('date_enregistrement', DateType::class, [
-                // renders it as a single text box
                 'widget' => 'single_text',])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
-            //     ],
-            // ])
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

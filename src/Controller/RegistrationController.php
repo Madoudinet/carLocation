@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Form\UserRolesType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,5 +49,28 @@ class RegistrationController extends AbstractController
         $manager->remove($user);
         $manager->flush();
         return $this->redirectToRoute('app_gestion_users');
+    }
+
+    #[Route('/register/modifier/{id}', name:'app_modify_role')]
+    public function modify(Request $request, EntityManagerInterface $manager, User $user = null)
+    {   
+        if($user == null){
+            $user = new User();
+
+        }
+        $form = $this->createForm(UserRolesType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($user);
+            $manager->flush();
+            return $this->redirectToRoute('app_gestion_users');
+        }
+
+        return $this->render('registration/modifyrole.html.twig', [
+            'form' => $form,
+        ]);
+
     }
 }

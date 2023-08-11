@@ -8,6 +8,6 @@
 ## 8-sécuriser les routes(avec les roles), créer son compte admin (local)
 9-faire la commande, faire en sorte q'un utilisateur puisse commander (créer le formulaire de commande, faire le traitement de la commande)
 10-faire le crud de la commande (AdminController)
-11-faire le crud membre (AdminController)
+## 11-faire le crud membre (AdminController)
 12-créer la page mon compte pour voir les commandes du membre connecté
 13-mise en ligne, création d'un compte admin, modification du role avec scalingo (connexion a la BDD en ligne), ajout de voiture etc...
