@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des vehicules{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4">Gestion des vehicules</h1>
+
+<table class="container table table-dark table-striped">
+    <thead>
+    <tr>
+    <th scope="col">Vehicule</th>
+    <th scope="col">Titre</th>
+    <th scope="col">Marque</th>
+    <th scope="col">Modele</th>
+    <th scope="col">Description</th>
+    <th scope="col">Photo</th>
+    <th scope="col">Prix</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+    <th scope="col">Vehicule</th>
+    <th scope="col">Titre</th>
+    <th scope="col">Marque</th>
+    <th scope="col">Modele</th>
+    <th scope="col">Description</th>
+    <th scope="col">Photo</th>
+    <th scope="col">Prix</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    {% for vehicule in vehicules %}
+        
+    <tr>
+    <td>{{ vehicule.id }}</td>
+    <td>{{ vehicule.marque }} {{ vehicule.modele }}</td>
+    <td>{{ vehicule.marque }}</td>
+    <td>{{ vehicule.modele }}</td>
+    <td>{{ vehicule.description }}</td>
+    <td><img src="{{ asset("img/upload/" ~ vehicule.photo) }}" alt="" width="50"></td>
+    <td>{{ vehicule.prixJournalier }} €</td>
+    <td>
+        <a href="{{ path('show_vehicule', {id: vehicule.id}) }}" class="test-success me-2"><i class="bi bi-eye-fill"></i></a>    
+        <a href="{{ path('app_modifier', {id: vehicule.id}) }}" class="text-info me-2"><i class="bi bi-pencil-square"></i></a>    
+        <a href="{{ path('app_supprimer', {id: vehicule.id}) }}" class="text-danger"><i class="bi bi-trash3-fill"></i></a>    
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

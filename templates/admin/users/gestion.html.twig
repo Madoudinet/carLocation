@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des membres{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4">Gestion des membres</h1>
+
+<table class="container table table-dark table-striped">
+    <thead>
+    <tr>
+    <th scope="col">id membre</th>
+    <th scope="col">Pseudo</th>
+    <th scope="col">Nom</th>
+    <th scope="col">Prenom</th>
+    <th scope="col">Email</th>
+    <th scope="col">Civilite</th>
+    <th scope="col">Statut</th>
+    <th scope="col">Date d'enregistrement</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+    <th scope="col">id membre</th>
+    <th scope="col">Pseudo</th>
+    <th scope="col">Nom</th>
+    <th scope="col">Prenom</th>
+    <th scope="col">Email</th>
+    <th scope="col">Civilite</th>
+    <th scope="col">Statut</th>
+    <th scope="col">Date d'enregistrement</th>
+    <th scope="col">Actions</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    {% for user in users %}
+        
+    <tr>
+    <td>{{ user.id }}</td>
+    <td>{{ user.pseudo }}</td>
+    <td>{{ user.nom }}</td>
+    <td>{{ user.prenom }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.civilite }}</td>
+    <td>{% for indice,role in user.roles %}       
+        {{ indice }}
+        {% endfor %}
+    </td>
+    <td>{{ user.dateEnregistrement|date('d/m/Y') }}</td>
+    <td>
+        <a href="" class="test-success me-1"><i class="bi bi-eye-fill"></i></a>    
+        <a href="" class="text-info me-1"><i class="bi bi-pencil-square"></i></a>    
+        <a href="{{ path('app_supprimer', {id: user.id}) }}" class="text-danger"><i class="bi bi-trash3-fill"></i></a>    
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

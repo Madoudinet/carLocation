@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ vehicule.marque }} {{ vehicule.modele }}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4">{{ vehicule.marque }} {{ vehicule.modele }}</h1>
+
+<div class="container mt-5">
+		<div class="card text-white bg-dark mb-3">
+			<div class="card-body">
+				<h4 class="card-title">{{ vehicule.marque }} {{ vehicule.modele }}</h4>
+				<img src="{{ asset("img/upload/" ~ vehicule.photo) }}" alt="" width="500">
+				<p class="card-text"><span class="text-light">Description : </span>{{ vehicule.description }}</p>
+				<p class="card-text"><span class="text-light">Prix : </span>{{ vehicule.prixJournalier }} €</p>
+
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des vehicules{% endblock %}
+
+{% block body %}
+<h1 class="text-center my-4">Liste des vehicules</h1>
+
+<div class="container">
+		<section class="row">
+			{# * for valeur in (objet ou tableau) #}
+			{% for vehicule in vehicules %}
+				<div class="card text-white bg-dark col-md-3 m-3 p-2">
+					<div class="card-header">{{ vehicule.marque }} {{ vehicule.modele }}</div>
+				<img src="{{ asset("img/upload/" ~ vehicule.photo) }}" alt="" class="p-1">
+
+					<div class="card-body">
+					<p><span class="text-light">Prix : </span>{{ vehicule.prixJournalier }} €</p>
+                    {# * le filtre |raw permet d'interpreter les balises HTML #}
+						<p><span class="text-light">Description : </span>{{ vehicule.description|slice(0, 100) }}</p>
+						<div class="text-center">
+							<a href="{{ path('show_vehicule', {id: vehicule.id}) }}" class="btn btn-primary">voir plus</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</section>
+	</div>
+
+
+{% endblock %}
